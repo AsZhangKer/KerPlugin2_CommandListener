@@ -1,0 +1,53 @@
+# 若配置文件版本与插件版本不匹配，此文件将自动备份至backup文件夹并重新加载默认配置
+# 如果你不知道这是什么，请不要修改
+config-version: 2
+
+# 语言设置
+locale: "zh_cn"
+
+# 功能开关
+features:
+  # 跨服命令转发（需要在代理端安装AzSuVelocity）
+  xcmd-forward: true
+  # 跨服调用占位符（暂未实现）
+  papi-cross-server: false
+
+# 跨服命令转发配置
+xcmd:
+  # 命令过滤模式: whitelist(白名单) 或 blacklist(黑名单)
+  filter-mode: "blacklist"
+  
+  # 命令列表（根据filter-mode决定是白名单还是黑名单）
+  commands:
+    - "op"
+    - "deop"
+    - "stop"
+    - "reload"
+    - "plugman"
+    - "ban"
+    - "kick"
+  
+  # 以控制台身份执行的命令
+  console-commands:
+    - "btab"
+    - "plugins"
+  
+  # 允许转发到的服务器列表
+  # proxy是代理端
+  # all是所有服务器
+  allowed-servers:
+    - "sw"
+    - "su1"
+    - "su2"
+    - "proxy"
+    - "all"
+  
+  # 子服转子服执行模式: console(控制台) 或 player(玩家-内测中)
+  server-to-server-mode: "console"
+
+  # 权限说明
+  # azsu.admin: 管理员权限
+  # azsu.xcmd.proxy: 以玩家身份将命令从子服转发至代理权限（默认所有玩家拥有）
+  # azsu.xcmd.server: 以玩家身份将命令从子服转发至其他子服权限
+  # azsu.xcmd.console: 以控制台身份转发命令权限
+  # azsu.xcmd.all: 转发命令至所有服务器权限

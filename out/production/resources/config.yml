@@ -1,0 +1,11 @@
+monitoring-enabled: true #命令记录总开关
+ops-commandFilter-enabled: true #启动/停止记录OP玩家的命令
+cross-server-command-monitoring: true #是否记录跨服转发的命令
+excluded-players: [] #不记录的玩家列表
+blocked-commands: #不记录的命令列表
+  - login
+  - register
+  - l
+  - reg
+  - changepassword
+  - cpw

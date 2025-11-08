@@ -1,0 +1,19 @@
+name: Ker_plugin_2nd
+version: 1.7.0
+main: org.ker.ker_plugin_2nd.Ker_plugin_2nd
+api-version: 1.21
+commands:
+  kp2-icmd:
+    description: 控制命令监控
+    usage: /kp2-icmd set <on/off> 或 /kp2-icmd player <add/remove> <玩家名>
+  kp2-reload:
+    description: 重载插件配置
+  kp2-iplayer:
+    description: 设置OP玩家通知
+    usage: /kp2-iplayer <on/off> <玩家名>
+  kp2-query:
+    description: 查询命令历史记录
+    usage: /kp2-query <日期> [玩家名]
+  kp2-help:
+    description: 显示帮助菜单
+    usage: /kp2-help

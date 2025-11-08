@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="[K][Ker插件2nd]KP2">
+    <output-path>$PROJECT_DIR$/out/artifacts/_K__Ker2nd_KP2</output-path>
+    <root id="archive" name="[K][Ker插件2nd]KP2.jar">
+      <element id="module-output" name="ker_plugin_2nd.main" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/data.yml" />
+    </root>
+  </artifact>
+</component>

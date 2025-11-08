@@ -1,0 +1,33 @@
+# AzSPlugin 跨服命令记录机制分析
+
+## 工作流程分析
+
+AzSPlugin的跨服命令转发流程：
+
+1. 玩家在服务器A上执行命令：`/xcmd serverB /say hello`
+2. AzSPlugin的handleXcmdCommand方法捕获该命令
+3. 通过插件消息系统将命令转发到代理端（Velocity）
+4. 代理端将命令发送到目标服务器serverB
+5. serverB执行命令`/say hello`
+
+## 记录策略
+
+对于KerPlugin2nd，应该记录以下命令：
+
+- 在服务器A上：记录`/xcmd serverB /say hello`（这是实际在当前服务器执行的命令）
+- 在服务器B上：如果也在运行KerPlugin2nd，则记录`/say hello`（这是实际在当前服务器执行的命令）
+
+## 当前实现
+
+当前的实现会检测到以`/xcmd`开头的命令并将其标记为跨服命令，然后正常记录。
+
+## 配置选项
+
+- `cross-server-command-monitoring: true` - 启用跨服命令记录
+- 如果设置为false，则不会记录以/xcmd开头的命令
+
+## 测试用例
+
+1. 执行普通命令：`/help` - 应该被记录
+2. 执行跨服命令：`/xcmd serverB /say hello` - 应该被记录并标记为跨服
+3. 配置cross-server-command-monitoring为false - 跨服命令不应被记录

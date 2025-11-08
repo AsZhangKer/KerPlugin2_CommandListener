@@ -1,0 +1,46 @@
+# KerPlugin2nd 测试说明 - AzSPlugin 跨服命令兼容性
+
+## 测试步骤
+
+1. 部署修改后的插件到服务器
+2. 确保AzSPlugin也同时部署在服务器上
+3. 在配置文件中设置 `cross-server-command-monitoring: true` 以启用跨服命令监控
+4. 执行以下测试场景：
+
+### 测试场景
+
+#### 普通命令测试
+- 普通玩家执行命令，如 `/help`，确认被记录
+- OP玩家执行命令，根据配置决定是否记录
+
+#### 跨服命令测试
+- 使用AzSPlugin执行跨服命令，如：
+  - `/xcmd servername /say hello`
+  - `/xcmd servername /tp player x y z`
+  - `/xcmd all /bc 测试消息`
+- 确认这些命令被正确识别为跨服命令并被记录
+
+#### 配置测试
+- 将 `cross-server-command-monitoring` 设置为 `false`
+- 确认跨服命令不再被记录
+- 将 `cross-server-command-monitoring` 设置为 `true`
+- 确认跨服命令被正常记录
+
+#### 日志记录测试
+- 检查日志文件是否包含带有 `[跨服]` 标识的命令记录
+- 检查控制台输出是否包含 `[跨服]` 标识
+- 检查OP玩家是否收到带有 `[跨服]` 标识的通知
+
+## 配置说明
+
+新的配置选项：
+- `cross-server-command-monitoring`: 控制是否记录跨服转发的命令
+  - `true` (默认): 记录跨服命令
+  - `false`: 不记录跨服命令
+
+## 注意事项
+
+1. 跨服命令检测逻辑基于AzSPlugin的`/xcmd`命令格式
+2. 记录的是在当前服务器上执行的`/xcmd`命令，而不是在目标服务器上实际执行的命令
+3. 测试时确保AzSPlugin和KerPlugin2nd的兼容性
+4. 如果跨服命令不被正确识别，请检查 `isAzsCrossServerCommand` 方法中的判断条件
